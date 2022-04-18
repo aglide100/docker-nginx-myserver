@@ -1,0 +1,45 @@
+version: "3"
+
+services:
+  nginx:
+    container_name: nginx
+    build:
+      context: .
+    restart: always
+    hostname: nginx
+    networks:
+      - docker_network
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      #- /etc/letsencrypt:/etc/nginx/ssl
+      - /etc/letsencrypt:/etc/letsencrypt
+        #- /var/www/certbot:/var/www/certbot
+      - /home/data/www/certbot:/var/www/certbot
+    environment:
+      # Create htpasswd user
+      - USERNAME=Hello
+      - USERPWD=Hello
+      - USERNAME2=Hello
+      - USERPWD2=Hello
+      - SubDomain=like-a-junk.com
+      - PrimaryDomain=like-a-junk.com
+      - Jdownloader2=false
+      - Netdata=false
+      - Photoprism=false
+      - Transmission=true
+      - Codeserver=false
+      - Jellyfin=false
+      - Jellyfin2=false
+      - Jenkins=false
+      - Nextcloud=false
+      - Tomcat=false
+
+networks:
+  docker_network:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "true"
+    ipam:
+      driver: default
