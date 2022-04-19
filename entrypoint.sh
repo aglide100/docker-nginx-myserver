@@ -95,10 +95,10 @@ function checkService() {
 			echo "${servicesNames[$i]} used"
 			#  pass
 
-			ping -c 1 ${servicesNames[$i]}
+			ping -c 2 ${servicesNames[$i]} | head -n 3
 			if [ "$?" = 0 ]
 			then
-				ehco "${servicesNames[$i]} found..."
+				echo "${servicesNames[$i]} found..."
 			else
 				echo "Host not found..."
 				rm -f /etc/nginx/template/locations/${servicesNames[$i]}.conf 
