@@ -23,7 +23,7 @@ function in_array() {
     echo "false"
 }
 
-function giveEnvBaseConf() {
+function giveEnvAtCommonFile() {
 	envsubst '${SubDomain} ${PrimaryDomain}' < /etc/nginx/template/base.conf.template > /etc/nginx/sites-available/base.conf
 	envsubst '${SubDomain} ${PrimaryDomain}' < /etc/nginx/template/index.html.template > /usr/share/nginx/html/index.html
 }
@@ -84,7 +84,6 @@ function makeLinkedFile() {
 	done
 }
 
-
 function checkService() {
 	for ((i=0; i<${#servicesNames[@]}; i++)) 
 	do	
@@ -124,7 +123,7 @@ addConfFile() {
 
 checkService
 genSubCodeServerConf
-giveEnvBaseConf
+giveEnvAtCommonFile
 makeLinkedFile
 makeLinkedFileAtLocations
 
