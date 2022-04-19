@@ -40,7 +40,7 @@ function genSubCodeServerConf() {
 		# echo "${fileName%.template}"
 		
 		if [[ ${fileName%.template} != "/*" ]]; then
-			echo "generate subcode conf file ${entry}"
+			echo "successfully added subcode conf file : ${fileName}"
 			envsubst '${SubDomain} ${PrimaryDomain}' < ${entry} > /etc/nginx/sites-available${fileName%.template}
 		fi
 
@@ -92,7 +92,7 @@ function checkService() {
 		# echo " ${Check}"
 
 		if [[ ${Check} == "true" ]]; then 
-			echo "${servicesNames[$i]} ${Check}"
+			echo "${servicesNames[$i]} used"
 			#  pass
 
 			ping -c 1 ${servicesNames[$i]}

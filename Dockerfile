@@ -5,7 +5,6 @@ RUN apk add --update apache2-utils \
 
 RUN apk add --no-cache --upgrade bash
 
-
 RUN mkdir -p /etc/nginx/sites-available/locations && \
 mkdir -p /etc/nginx/sites-enabled/locations && \
 mkdir -p /var/webdav/file/share && \
