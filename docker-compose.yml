@@ -35,6 +35,7 @@ services:
       - Jenkins=false
       - Nextcloud=false
       - Tomcat=false
+      - CasaOS=false
 
 networks:
   docker_network:

@@ -14,6 +14,7 @@ servicesNames=(
 	"Nextcloud"
 	"Tomcat"
 	"Novnc"
+	"CasaOS"
 )
 
 function in_array() {
@@ -84,6 +85,16 @@ function makeLinkedFile() {
 	done
 }
 
+function removeFile() {
+	if [ -z "$1"]
+	then 
+		echo "remove $1"
+		rm -f /etc/nginx/template/locations/${servicesNames[$i]}.conf 
+		rm -f /etc/nginx/template/subcode/${servicesNames[$i]}.conf.template 
+		rm -f /etc/nginx/template/upstreams/${servicesNames[$i]}.conf 
+	fi
+}
+
 function checkService() {
 	for ((i=0; i<${#servicesNames[@]}; i++)) 
 	do	
@@ -95,21 +106,22 @@ function checkService() {
 			echo "${servicesNames[$i]} used"
 			#  pass
 
+			if [[ "${servicesNames[$i]}" == 'CasaOS' ]]; then
+				echo "Find CasaOS"
+				continue
+			fi
+
 			ping -c 2 ${servicesNames[$i]} | head -n 3
 			if [ "$?" = 0 ]
 			then
 				echo "${servicesNames[$i]} found..."
 			else
 				echo "Host not found..."
-				rm -f /etc/nginx/template/locations/${servicesNames[$i]}.conf 
-				rm -f /etc/nginx/template/subcode/${servicesNames[$i]}.conf.template 
-				rm -f /etc/nginx/template/upstreams/${servicesNames[$i]}.conf 
+				removeFile ${servicesNames[$i]}
 			fi
 		else 
 			echo "${servicesNames[$i]} removed"
-			rm -f /etc/nginx/template/locations/${servicesNames[$i]}.conf 
-			rm -f /etc/nginx/template/subcode/${servicesNames[$i]}.conf.template 
-			rm -f /etc/nginx/template/upstreams/${servicesNames[$i]}.conf 
+			removeFile ${servicesNames[$i]}
 		fi
 	done
 }
