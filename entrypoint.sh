@@ -85,16 +85,6 @@ function makeLinkedFile() {
 	done
 }
 
-function removeFile() {
-	if [ -z "$1"]
-	then 
-		echo "remove $1"
-		rm -f /etc/nginx/template/locations/${servicesNames[$i]}.conf 
-		rm -f /etc/nginx/template/subcode/${servicesNames[$i]}.conf.template 
-		rm -f /etc/nginx/template/upstreams/${servicesNames[$i]}.conf 
-	fi
-}
-
 function checkService() {
 	for ((i=0; i<${#servicesNames[@]}; i++)) 
 	do	
@@ -117,11 +107,15 @@ function checkService() {
 				echo "${servicesNames[$i]} found..."
 			else
 				echo "Host not found..."
-				removeFile ${servicesNames[$i]}
+				rm -f /etc/nginx/template/locations/${servicesNames[$i]}.conf 
+				rm -f /etc/nginx/template/subcode/${servicesNames[$i]}.conf.template 
+				rm -f /etc/nginx/template/upstreams/${servicesNames[$i]}.conf 
 			fi
 		else 
 			echo "${servicesNames[$i]} removed"
-			removeFile ${servicesNames[$i]}
+			rm -f /etc/nginx/template/locations/${servicesNames[$i]}.conf 
+			rm -f /etc/nginx/template/subcode/${servicesNames[$i]}.conf.template 
+			rm -f /etc/nginx/template/upstreams/${servicesNames[$i]}.conf 
 		fi
 	done
 }
