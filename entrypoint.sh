@@ -98,7 +98,7 @@ function checkService() {
 			echo "${servicesNames[$i]} used"
 			#  pass
 
-			if [ "${servicesNames[$i]}" == 'CasaOS' ] || [ "${servicesNames[$i]}" == 'Minecraft' ] || [ "${servicesNames[$i]}" == 'Dynmap' ] ; then
+			if [ "${servicesNames[$i]}" == 'CasaOS' ] || [ "${servicesNames[$i]}" == 'Dynmap' ] ; then
 				echo "Find CasaOS"
 				continue
 			fi
