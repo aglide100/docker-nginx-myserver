@@ -15,6 +15,8 @@ servicesNames=(
 	"Tomcat"
 	"Novnc"
 	"CasaOS"
+	"Minecraft"
+	"Dynmap"
 )
 
 function in_array() {
@@ -96,7 +98,7 @@ function checkService() {
 			echo "${servicesNames[$i]} used"
 			#  pass
 
-			if [[ "${servicesNames[$i]}" == 'CasaOS' ]]; then
+			if [ "${servicesNames[$i]}" == 'CasaOS' ] || [ "${servicesNames[$i]}" == 'Minecraft' ] || [ "${servicesNames[$i]}" == 'Dynmap' ] ; then
 				echo "Find CasaOS"
 				continue
 			fi
