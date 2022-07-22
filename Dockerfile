@@ -1,4 +1,20 @@
-FROM nginx:1.21-alpine
+FROM node:lts AS builder
+
+RUN mkdir /app
+
+COPY ui/ /app
+
+WORKDIR /app/ui
+
+RUN npm install
+
+RUN npm run build
+
+RUN npm run export
+
+FROM nginx:1.21-alpine AS runtime
+
+COPY --from=builder /app/out/ /usr/share/nginx/
 
 RUN apk add --update apache2-utils \
     && rm -rf /var/cache/apk/*
@@ -14,7 +30,7 @@ rm -rf /etc/nginx/sites-enabled/default
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
-COPY docs/ /usr/share/nginx/
+#COPY docs/ /usr/share/nginx/
 
 COPY ./conf.d ./etc/nginx/template
 COPY cert.conf.template ./etc/nginx/template
