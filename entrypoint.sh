@@ -15,7 +15,12 @@ servicesNames=(
 	"Tomcat"
 	"Novnc"
 	"CasaOS"
+	"Minecraft"
+	"Dynmap"
 )
+
+function combine_base_file
+
 
 function in_array() {
     local needle array value
@@ -96,7 +101,7 @@ function checkService() {
 			echo "${servicesNames[$i]} used"
 			#  pass
 
-			if [[ "${servicesNames[$i]}" == 'CasaOS' ]]; then
+			if [ "${servicesNames[$i]}" == 'CasaOS' ] || [ "${servicesNames[$i]}" == 'Dynmap' ] ; then
 				echo "Find CasaOS"
 				continue
 			fi
