@@ -12,6 +12,7 @@ RUN npm run build
 
 RUN npm run export
 
+
 FROM nginx:1.21-alpine AS runtime
 
 COPY --from=builder /app/out/ /usr/share/nginx/

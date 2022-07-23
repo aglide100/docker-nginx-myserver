@@ -19,7 +19,14 @@ servicesNames=(
 	"Dynmap"
 )
 
-function combine_base_file
+# function combine_base_files() {
+
+
+# 	for service in "${servicesNames[@]}"; do
+# 		echo "combine $service"
+# 		cat "$service" >> "$service.base"
+# 	done
+# }
 
 
 function in_array() {
@@ -31,7 +38,7 @@ function in_array() {
 
 function giveEnvAtCommonFile() {
 	envsubst '${SubDomain} ${PrimaryDomain}' < /etc/nginx/template/base.conf.template > /etc/nginx/sites-available/base.conf
-	envsubst '${SubDomain} ${PrimaryDomain}' < /etc/nginx/template/index.html.template > /usr/share/nginx/html/index.html
+	#envsubst '${SubDomain} ${PrimaryDomain}' < /etc/nginx/template/index.html.template > /usr/share/nginx/html/index.html
 }
 
 function genSubCodeServerConf() {
