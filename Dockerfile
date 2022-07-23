@@ -1,10 +1,15 @@
-FROM node:lts AS builder
+FROM node:18 AS builder
 
 RUN mkdir /app
 
 COPY ui/ /app
 
-WORKDIR /app/ui
+#COPY ./ui/entrypoint.sh /app/ui/entrypoint.sh
+
+WORKDIR /app
+
+RUN chmod +x /app/entrypoint.sh
+ENTRYPOINT ["/app/entrypoint.sh"]
 
 RUN npm install
 
@@ -12,10 +17,9 @@ RUN npm run build
 
 RUN npm run export
 
-
 FROM nginx:1.21-alpine AS runtime
 
-COPY --from=builder /app/out/ /usr/share/nginx/
+COPY --from=builder /app/out/ /usr/share/nginx/html
 
 RUN apk add --update apache2-utils \
     && rm -rf /var/cache/apk/*

@@ -2,8 +2,12 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import getConfig from 'next/config'
 
 const Home: NextPage = () => {
+  const { publicRuntimeConfig: config } = getConfig()
+  console.log('config:', JSON.stringify(config))
+
   return (
     <div className={styles.container}>
       <Head>
@@ -24,7 +28,7 @@ const Home: NextPage = () => {
 
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
+            <h2>{process.env.PrimaryDomain} &rarr;</h2>
             <p>Find in-depth information about Next.js features and API.</p>
           </a>
 
