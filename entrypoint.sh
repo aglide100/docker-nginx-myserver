@@ -19,16 +19,6 @@ servicesNames=(
 	"Dynmap"
 )
 
-# function combine_base_files() {
-
-
-# 	for service in "${servicesNames[@]}"; do
-# 		echo "combine $service"
-# 		cat "$service" >> "$service.base"
-# 	done
-# }
-
-
 function in_array() {
     local needle array value
     needle="${1}"; shift; array=("${@}")
@@ -36,9 +26,23 @@ function in_array() {
     echo "false"
 }
 
+function makeEnvFile() {
+	envsubst < /etc/nginx/template/env/env.template > /usr/share/nginx/html/env.html
+}
+
 function giveEnvAtCommonFile() {
-	envsubst '${SubDomain} ${PrimaryDomain}' < /etc/nginx/template/base.conf.template > /etc/nginx/sites-available/base.conf
-	#envsubst '${SubDomain} ${PrimaryDomain}' < /etc/nginx/template/index.html.template > /usr/share/nginx/html/index.html
+	envsubst '${Domain2} ${Domain1}' < /etc/nginx/template/base.conf.template > /etc/nginx/sites-available/base.conf
+	#envsubst '${Domain2} ${Domain1}' < /etc/nginx/template/index.html.template > /usr/share/nginx/html/index.html
+}
+
+function combinedBaseConf() {
+	if [[ -v DOMAIN2 && -n ${DOMAIN2} ]]; then
+	    echo $DOMAIN2
+
+	else 
+	    DOMAIN2="None"
+	fi
+
 }
 
 function genSubCodeServerConf() {
@@ -54,7 +58,7 @@ function genSubCodeServerConf() {
 		
 		if [[ ${fileName%.template} != "/*" ]]; then
 			echo "successfully added subcode conf file : ${fileName}"
-			envsubst '${SubDomain} ${PrimaryDomain}' < ${entry} > /etc/nginx/sites-available${fileName%.template}
+			envsubst '${Domain2} ${Domain1}' < ${entry} > /etc/nginx/sites-available${fileName%.template}
 		fi
 
 	done
@@ -142,10 +146,11 @@ addConfFile() {
 checkService
 genSubCodeServerConf
 giveEnvAtCommonFile
+makeEnvFile
 makeLinkedFile
 makeLinkedFileAtLocations
 
-# Check="/etc/letsencrypt/live/$PrimaryDomain/fullchain.pem"
+# Check="/etc/letsencrypt/live/$Domain1/fullchain.pem"
 
 # if [ -e $Check ]; then
 # 	rm -rf /etc/nginx/sites-available/cert.conf

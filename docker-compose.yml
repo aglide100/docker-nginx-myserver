@@ -12,11 +12,11 @@ services:
         ports:
             - "80:80"
             - "443:443"
-        volumes:
-            - /etc/letsencrypt:/etc/letsencrypt
-            - /home/data/www/certbot:/var/www/certbot
-        env_file:
-            - /media/test/config/proxyList.env
+        #volumes:
+        #    - /etc/letsencrypt:/etc/letsencrypt
+        #    - /home/data/www/certbot:/var/www/certbot
+        # env_file:
+        #     - /media/test/config/proxyList.env
         environment:
             # Create htpasswd user
             - USERNAME=Hello
@@ -25,19 +25,19 @@ services:
             - USERPWD2=Hello
             - SubDomain=like-a-junk.com
             - PrimaryDomain=like-a-junk.com
-            # - Jdownloader2=false
-            # - Netdata=false
-            # - Photoprism=false
-            # - Transmission=true
-            # - Codeserver=false
-            # - Jellyfin=false
-            # - Jellyfin2=false
-            # - Jenkins=false
-            # - Nextcloud=false
-            # - Tomcat=false
-            # - CasaOS=false
-            # - Minecraft=false
-            # - Dynmap=false
+            - Jdownloader2=false
+            - Netdata=false
+            - Photoprism=false
+            - Transmission=false
+            - Codeserver=false
+            - Jellyfin=false
+            - Jellyfin2=false
+            - Jenkins=false
+            - Nextcloud=false
+            - Tomcat=false
+            - CasaOS=false
+            - Minecraft=false
+            - Dynmap=false
 
 networks:
     docker_network:

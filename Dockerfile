@@ -4,12 +4,15 @@ RUN mkdir /app
 
 COPY ui/ /app
 
-#COPY ./ui/entrypoint.sh /app/ui/entrypoint.sh
-
 WORKDIR /app
 
-RUN chmod +x /app/entrypoint.sh
-ENTRYPOINT ["/app/entrypoint.sh"]
+#RUN apt-get update && apt-get install -y gettext-base
+
+#RUN envsubst < "/app/next.config.js.template" > "/app/next.config.js"
+
+# RUN ["/bin/bash", "/app/entrypoint.sh"].
+
+# RUN echo $(ls -1 /app)
 
 RUN npm install
 
