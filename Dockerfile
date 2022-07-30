@@ -6,14 +6,6 @@ COPY ui/ /app
 
 WORKDIR /app
 
-#RUN apt-get update && apt-get install -y gettext-base
-
-#RUN envsubst < "/app/next.config.js.template" > "/app/next.config.js"
-
-# RUN ["/bin/bash", "/app/entrypoint.sh"].
-
-# RUN echo $(ls -1 /app)
-
 RUN npm install
 
 RUN npm run build

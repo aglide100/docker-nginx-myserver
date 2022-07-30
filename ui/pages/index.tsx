@@ -4,7 +4,7 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import * as axios from "axios";
-import { CardItem } from "../components/CardItem/CardItem";
+import { CardView, CardViewProps, CardViewDataType } from "../components/CardView/CardView";
 
 export type EnvProps = {
     SubDomain: string;
@@ -15,7 +15,7 @@ export type EnvProps = {
     Transmission: boolean;
     Codeserver: boolean;
     Jellyfin: boolean;
-    Jellyfin2: boolean;
+    Jellyfin2: boolean; 
     Jenkins: boolean;
     Nextcloud: boolean;
     Tomcat: boolean;
@@ -26,16 +26,15 @@ export type EnvProps = {
 
 const Home: NextPage = () => {
     let cardList;
-    const [data, setData] = useState<EnvProps>();
+    const [data, setData] = useState<any>();
+    const [domain, setDomain] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     function getEnv() {
         const axiosObj = axios.default;
         axiosObj.get("/env").then((res) => {
-            // var env = JSON.parse(res.data);
-            // console.log(env.env);
-
             setData(res.data.env);
+            setDomain(res.data.PrimaryDomain);
             setIsLoading(true);
         });
     }
@@ -46,14 +45,21 @@ const Home: NextPage = () => {
         }
     });
 
-    if (isLoading) {
-        console.log(data);
-        // var env = JSON.parse(data);
-
-        // cardList = data.map((arg: any, index: any) => {
-        //     console.log("arg", arg);
-        //     return <CardItem key={index} domain="aa" path="aa"></CardItem>;
-        // });
+    if (isLoading && data != undefined) {
+        // console.log(data);
+        cardList = Object.keys(data).map((key, i) => {
+            console.log("Key : ", key)
+            console.log(data[key])
+            let serviceName = key as CardViewDataType
+            
+            if (data[key] == true) {
+                console.log("!!", serviceName)
+                // return <>Hi</>
+                return <CardView data={serviceName} domain={domain}></CardView>
+            }
+        })
+    } else {
+        cardList = <>Loading...</>
     }
 
     return (
@@ -75,7 +81,8 @@ const Home: NextPage = () => {
                 </p>
 
                 <div className={styles.grid}>
-                    <a href="https://nextjs.org/docs" className={styles.card}>
+                    {cardList}
+                    {/* <a href="https://nextjs.org/docs" className={styles.card}>
                         <h2>{process.env.PrimaryDomain} &rarr;</h2>
                         <p>
                             Find in-depth information about Next.js features and
@@ -84,6 +91,8 @@ const Home: NextPage = () => {
                     </a>
 
                     <a href="https://nextjs.org/learn" className={styles.card}>
+                        
+                        
                         <h2>Learn &rarr;</h2>
                         <p>
                             Learn about Next.js in an interactive course with
@@ -111,7 +120,7 @@ const Home: NextPage = () => {
                             Instantly deploy your Next.js site to a public URL
                             with Vercel.
                         </p>
-                    </a>
+                    </a> */}
                 </div>
             </main>
 
@@ -135,37 +144,5 @@ const Home: NextPage = () => {
         </div>
     );
 };
-
-// export async function getStaticProps() {
-//     try {
-//         const axiosObj = axios.default;
-
-//         const response = await axiosObj.get("http://localhost:3000/api/env");
-//         const data = response.data;
-//         return {
-//             data,
-//         };
-//     } catch (err) {
-//         console.log(err);
-//         return err;
-//     }
-// }
-
-// export async function getStaticProps() {
-//     const res = await fetch("/env");
-//     const posts = await res.json();
-
-//     return {
-//         props: {
-//             posts,
-//         },
-//     };
-// }
-
-// export async function getStaticProps(context: any) {
-//     return {
-//         props: {},
-//     };
-// }
 
 export default Home;
