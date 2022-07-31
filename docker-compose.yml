@@ -23,8 +23,8 @@ services:
             - USERPWD=Hello
             - USERNAME2=Hello
             - USERPWD2=Hello
-            - Domain2=like-a-junk.com
-            - Domain1=like-a-junk.com
+            - Domain2=example.com
+            - Domain1=example.com
             - Jdownloader2=false
             - Netdata=false
             - Photoprism=false

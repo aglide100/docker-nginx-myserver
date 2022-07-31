@@ -34,7 +34,6 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 COPY ./conf.d ./etc/nginx/template
 COPY cert.conf.template ./etc/nginx/template
-COPY /docs/html/index.html.template ./etc/nginx/template
 
 COPY entrypoint.sh .
 
