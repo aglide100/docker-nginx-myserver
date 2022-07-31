@@ -7,8 +7,8 @@ import * as axios from "axios";
 import { CardView, CardViewProps, CardViewDataType } from "../components/CardView/CardView";
 
 export type EnvProps = {
-    SubDomain: string;
-    PrimaryDomain: string;
+    Domain2: string;
+    Domain1: string;
     Jdownloader2: boolean;
     Netdata: boolean;
     Photoprism: boolean;
@@ -34,7 +34,7 @@ const Home: NextPage = () => {
         const axiosObj = axios.default;
         axiosObj.get("/env").then((res) => {
             setData(res.data.env);
-            setDomain(res.data.PrimaryDomain);
+            setDomain(res.data.Domain1);
             setIsLoading(true);
         });
     }
@@ -83,7 +83,7 @@ const Home: NextPage = () => {
                 <div className={styles.grid}>
                     {cardList}
                     {/* <a href="https://nextjs.org/docs" className={styles.card}>
-                        <h2>{process.env.PrimaryDomain} &rarr;</h2>
+                        <h2>{process.env.Domain1} &rarr;</h2>
                         <p>
                             Find in-depth information about Next.js features and
                             API.

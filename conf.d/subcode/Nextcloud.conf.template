@@ -1,15 +1,15 @@
 
 server {
-    server_name nextcloud.${SubDomain} nextcloud.${PrimaryDomain};
+    server_name nextcloud.${Domain2} nextcloud.${Domain1};
     charset utf-8;
     
     listen [::]:443 ssl http2;
     listen 443 ssl http2;
     
-    ssl_certificate /etc/letsencrypt/live/${PrimaryDomain}/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/${PrimaryDomain}/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/${Domain1}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/${Domain1}/privkey.pem;
     
-    add_header Strict-Transport-Security "max-age=15552000; includeSubdomains; preload";
+    add_header Strict-Transport-Security "max-age=15552000; includeDomain2s; preload";
 
     client_max_body_size 10G;
 	client_body_buffer_size 1024k;
@@ -33,8 +33,8 @@ server {
         proxy_buffering off;
     	proxy_pass https://docker-nextcloud;
 	    #proxy_http_version 1.1;
-        proxy_ssl_certificate /etc/letsencrypt/live/${PrimaryDomain}/fullchain.pem;
-        proxy_ssl_certificate_key /etc/letsencrypt/live/${PrimaryDomain}/privkey.pem;
+        proxy_ssl_certificate /etc/letsencrypt/live/${Domain1}/fullchain.pem;
+        proxy_ssl_certificate_key /etc/letsencrypt/live/${Domain1}/privkey.pem;
     
         # proxy header
    	    proxy_set_header Connection 'upgrade';

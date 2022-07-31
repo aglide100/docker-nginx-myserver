@@ -5,6 +5,6 @@ Just for my nas...
     
     - USERNAME: User name when use http basic login
     - USERPWD: User pwd when use http basic login
-    - PrimaryDomain: domain
-    - SubDomain: same function at PrimaryDomain
+    - Domain1: domain
+    - Domain2: same function at Domain1
     - {servicenames} : proxypass to declared in services..

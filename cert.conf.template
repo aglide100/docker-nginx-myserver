@@ -1,7 +1,7 @@
 server {
     listen 80;
  
-    server_name ${PrimaryDomain} ${SubDomain} *.${PrimaryDomain} *.${SubDomain};
+    server_name ${Domain1} ${Domain2} *.${Domain1} *.${Domain2};
     
     location ^~ /.well-known/acme-challenge/ {
         root /var/www/certbot/;

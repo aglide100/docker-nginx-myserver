@@ -1,12 +1,12 @@
 
 server {
-    server_name jellyfin2.${PrimaryDomain} jellyfin2.${SubDomain};
+    server_name jellyfin2.${Domain1} jellyfin2.${Domain2};
     charset utf-8;
     
     listen 443 ssl;
     
-    ssl_certificate /etc/letsencrypt/live/${PrimaryDomain}/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/${PrimaryDomain}/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/${Domain1}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/${Domain1}/privkey.pem;
     resolver 127.0.0.1 valid=30;
         
     location / {

@@ -1,11 +1,11 @@
 server {
-    server_name jenkins.${PrimaryDomain} jenkins.${SubDomain};
+    server_name jenkins.${Domain1} jenkins.${Domain2};
     charset utf-8;
     
     listen 443 ssl;
     
-    ssl_certificate /etc/letsencrypt/live/${PrimaryDomain}/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/${PrimaryDomain}/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/${Domain1}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/${Domain1}/privkey.pem;
     
     location / {
     	proxy_pass http://docker-jenkins;
