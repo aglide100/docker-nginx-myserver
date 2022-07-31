@@ -2,9 +2,16 @@ import React, { useState } from "react";
 import styles from "../../styles/Home.module.css";
 import { motion } from "framer-motion";
 
-export const Jdownloader2 = (domain: String) => {
+export const CodeServer = (domain: String) => {
     const [isHover, setIsHover] = useState<boolean>(false);
-    
+    let url = '';
+
+    for (var p in domain) {
+        if (Object.prototype.hasOwnProperty.call(domain, p)) {
+            url += domain[p];
+        }
+    }
+
     return (
         <motion.div
             layout
@@ -30,8 +37,8 @@ export const Jdownloader2 = (domain: String) => {
             }}
             className={styles.card}
         >
-            <a href="/jdownloader-2" >
-                <h2>Jdownloader2 </h2> 
+            <a href={"code."+url} >
+                <h2>Codeserver </h2> 
             </a>
             {isHover && <motion.div style={{ width: "100%"}}>
                         <p>Some descrbe about this service</p>

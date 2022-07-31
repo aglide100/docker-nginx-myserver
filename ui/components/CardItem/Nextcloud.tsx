@@ -1,14 +1,48 @@
+import React, { useState } from "react";
 import styles from "../../styles/Home.module.css";
+import { motion } from "framer-motion";
 
+export const Nextcloud = (domain: String) => {
+    const [isHover, setIsHover] = useState<boolean>(false);
+    let url = '';
 
-export  const Nextcloud = (domain: string) => {
+    for (var p in domain) {
+        if (Object.prototype.hasOwnProperty.call(domain, p)) {
+            url += domain[p];
+        }
+    }
+
     return (
-        <a href="" className={styles.card}>
-            <h2>Nextcloud &rarr;</h2>
-            <p>
-                Find in-depth information about Next.js features and
-                API.
-            </p>
-        </a>
+        <motion.div
+            layout
+            onMouseEnter={(ev) => {
+                ev.preventDefault();
+                setIsHover(true);
+            }}
+            onMouseLeave={(ev) => {
+                ev.preventDefault();
+                setIsHover(false);
+            }}
+            whileHover={{
+                minWidth: "15rem",
+                width: "22rem",
+                height: "15rem",
+                minHeight: "6rem"
+            }}
+            transition={{ duration: 0.7 }}
+            style={{display:"flex"
+            , flexDirection:"column"
+            , width: "15rem"
+            , height: "6rem"
+            }}
+            className={styles.card}
+        >
+            <a href={"nextcloud."+url} >
+                <h2>Nextcloud </h2> 
+            </a>
+            {isHover && <motion.div style={{ width: "100%"}}>
+                        <p>Some descrbe about this service</p>
+                    </motion.div>}
+        </motion.div>
     )
 }

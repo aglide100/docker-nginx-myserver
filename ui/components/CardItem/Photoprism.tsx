@@ -1,14 +1,41 @@
+import React, { useState } from "react";
 import styles from "../../styles/Home.module.css";
+import { motion } from "framer-motion";
 
-
-export  const Photoprism = (domain: string) => {
+export const Photoprism = (domain: String) => {
+    const [isHover, setIsHover] = useState<boolean>(false);
+    
     return (
-        <a href="/photoprism" className={styles.card}>
-            <h2>Photoprism &rarr;</h2>
-            <p>
-                Find in-depth information about Next.js features and
-                API.
-            </p>
-        </a>
+        <motion.div
+            layout
+            onMouseEnter={(ev) => {
+                ev.preventDefault();
+                setIsHover(true);
+            }}
+            onMouseLeave={(ev) => {
+                ev.preventDefault();
+                setIsHover(false);
+            }}
+            whileHover={{
+                minWidth: "15rem",
+                width: "22rem",
+                height: "15rem",
+                minHeight: "6rem"
+            }}
+            transition={{ duration: 0.7 }}
+            style={{display:"flex"
+            , flexDirection:"column"
+            , width: "15rem"
+            , height: "6rem"
+            }}
+            className={styles.card}
+        >
+            <a href="/photoprism" >
+                <h2>Photoprism </h2> 
+            </a>
+            {isHover && <motion.div style={{ width: "100%"}}>
+                        <p>Some descrbe about this service</p>
+                    </motion.div>}
+        </motion.div>
     )
 }
