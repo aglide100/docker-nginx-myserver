@@ -19,7 +19,7 @@ const contentVariants = {
     }
 };
 
-export const Dynmap = (domain: String) => {
+export const Transmission = (domain: String) => {
     const [isHover, setIsHover] = useState<boolean>(false);
     
     return (
@@ -58,11 +58,11 @@ export const Dynmap = (domain: String) => {
                 <motion.div 
                     onClick={(ev) => {
                         ev.preventDefault();
-                        location.href="/dynmap";
+                        location.href="/transmission";
                     }}
                     style={{display: "flex", flexDirection: "row", marginLeft: "0.7rem", cursor: "pointer", alignItems: "center", justifyContent: "start"}}>
-                    <motion.img src="/icon_jdownloader.svg" style={{ width: "30px", height: "30px"}}></motion.img>         
-                    <motion.h2 style={{marginLeft: "0.5rem"}}>Dynmap</motion.h2> 
+                    <motion.img src="/icon_transmission.png" style={{ width: "30px", height: "30px"}}></motion.img>         
+                    <motion.h2 style={{marginLeft: "0.5rem"}}>Transmission</motion.h2> 
                 </motion.div>
                 {isHover && 
                     <motion.div

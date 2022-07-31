@@ -5,7 +5,7 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import * as axios from "axios";
 import { CardContainer, CardContainerProps, CardContainerDataType } from "../components/CardContainer/CardContainer";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimateSharedLayout } from "framer-motion";
 
 const Home: NextPage = () => {
     let cardList;
@@ -34,7 +34,7 @@ const Home: NextPage = () => {
             let serviceName = key as CardContainerDataType
             
             if (data[key] == true) {
-                return <CardContainer svcName={serviceName} domain={domain}></CardContainer>
+                return <CardContainer key={"list_" + i} svcName={serviceName} domain={domain}></CardContainer>
             }
         })
     } else {
@@ -59,9 +59,19 @@ const Home: NextPage = () => {
                 </p> */}
 
                 <motion.div className={styles.grid}>
-                    <AnimatePresence>
-                        {cardList}
-                    </AnimatePresence>
+                    <AnimateSharedLayout>
+                        <motion.ul
+                        layout
+                        style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            padding: "10rem",
+                            justifyContent: "space-around",
+                            flexWrap: "wrap",
+                        }}>
+                            {cardList}
+                        </motion.ul>
+                    </AnimateSharedLayout>
                 </motion.div>
             </main>
 

@@ -7,7 +7,7 @@ import { Netdata } from "../CardItem/Netdata";
 import { Nextcloud } from "../CardItem/Nextcloud";
 import { None } from "../CardItem/None";
 import { Photoprism } from "../CardItem/Photoprism";
-import { Transimission } from "../CardItem/Transimission";
+import { Transmission } from "../CardItem/Transmission";
 
 export type CardContainerDataType = typeof servicesList[number];
 
@@ -36,7 +36,7 @@ const cardData = {
     Jdownloader2:  React.createFactory(Jdownloader2),
     Netdata:  React.createFactory(Netdata),
     Photoprism:  React.createFactory(Photoprism),
-    Transmission:  React.createFactory(Transimission),
+    Transmission:  React.createFactory(Transmission),
     Codeserver:  React.createFactory(CodeServer),
     Jellyfin:  React.createFactory(Jellyfin),
     Jellyfin2:  React.createFactory(None),
