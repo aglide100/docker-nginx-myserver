@@ -22,6 +22,14 @@ const contentVariants = {
 export const CodeServer = (domain: String) => {
     const [isHover, setIsHover] = useState<boolean>(false);
     
+    let url = '';
+
+    for (var p in domain) {
+        if (Object.prototype.hasOwnProperty.call(domain, p)) {
+            url += domain[p];
+        }
+    }
+
     return (
         <AnimatePresence>
             <motion.div
@@ -58,7 +66,11 @@ export const CodeServer = (domain: String) => {
                 <motion.div 
                     onClick={(ev) => {
                         ev.preventDefault();
-                        location.href="code."+domain;
+                        if (location.protocol == 'http:') {
+                            location.href="http://code."+url;    
+                        } else {
+                            location.href="https://code."+url;        
+                        }
                     }}
                     style={{display: "flex", flexDirection: "row", marginLeft: "0.7rem", cursor: "pointer", alignItems: "center", justifyContent: "start"}}>
                     <motion.img src="/icon_vscode.svg" style={{ width: "30px", height: "30px"}}></motion.img>         

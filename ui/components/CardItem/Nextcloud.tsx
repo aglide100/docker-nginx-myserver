@@ -22,6 +22,14 @@ const contentVariants = {
 export const Nextcloud = (domain: String) => {
     const [isHover, setIsHover] = useState<boolean>(false);
     
+    let url = '';
+
+    for (var p in domain) {
+        if (Object.prototype.hasOwnProperty.call(domain, p)) {
+            url += domain[p];
+        }
+    }
+
     return (
         <AnimatePresence>
             <motion.div
@@ -58,7 +66,11 @@ export const Nextcloud = (domain: String) => {
                 <motion.div 
                     onClick={(ev) => {
                         ev.preventDefault();
-                        location.href="nextcloud."+domain;
+                        if (location.protocol == 'http:') {
+                            location.href="http://nextcloud."+url;    
+                        } else {
+                            location.href="https://nextcloud."+url;        
+                        }
                     }}
                     style={{display: "flex", flexDirection: "row", marginLeft: "0.7rem", cursor: "pointer", alignItems: "center", justifyContent: "start"}}>
                     <motion.img src="/icon_nextcloud.png" style={{ width: "30px", height: "30px"}}></motion.img>         

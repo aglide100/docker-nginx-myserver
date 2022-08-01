@@ -22,6 +22,13 @@ const contentVariants = {
 export const Jellyfin = (domain: String) => {
     const [isHover, setIsHover] = useState<boolean>(false);
     
+    let url = '';
+
+    for (var p in domain) {
+        if (Object.prototype.hasOwnProperty.call(domain, p)) {
+            url += domain[p];
+        }
+    }
     return (
         <AnimatePresence>
             <motion.div
@@ -58,7 +65,11 @@ export const Jellyfin = (domain: String) => {
                 <motion.div 
                     onClick={(ev) => {
                         ev.preventDefault();
-                        location.href="jellyfin."+domain;
+                        if (location.protocol == 'http:') {
+                            location.href="http://jellyfin."+url;    
+                        } else {
+                            location.href="https://jellyfin."+url;        
+                        }
                     }}
                     style={{display: "flex", flexDirection: "row", marginLeft: "0.7rem", cursor: "pointer", alignItems: "center", justifyContent: "start"}}>
                     <motion.img src="/icon_jellyfin.png" style={{ width: "30px", height: "30px"}}></motion.img>         
