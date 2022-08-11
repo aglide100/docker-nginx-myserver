@@ -38,6 +38,7 @@ services:
             - CasaOS=false
             - Minecraft=false
             - Dynmap=false
+            - Bluemap=false
 
 networks:
     docker_network:
