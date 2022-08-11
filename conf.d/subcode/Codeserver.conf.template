@@ -1,12 +1,12 @@
 
 server {
-    server_name code.${SubDomain} code.${PrimaryDomain};
+    server_name code.${Domain2} code.${Domain1};
     charset utf-8;
     
     listen 443 ssl;
     
-    ssl_certificate /etc/letsencrypt/live/${PrimaryDomain}/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/${PrimaryDomain}/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/${Domain1}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/${Domain1}/privkey.pem;
     
     location / {
     	proxy_pass         http://docker-code-server;
