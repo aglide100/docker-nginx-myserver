@@ -17,6 +17,8 @@ servicesNames=(
 	"CasaOS"
 	"Minecraft"
 	"Dynmap"
+	"Bluemap"
+	"API"
 )
 
 function in_array() {
@@ -128,6 +130,10 @@ function checkService() {
 				rm -f /etc/nginx/template/upstreams/${servicesNames[$i]}.conf 
 			fi
 		else 
+			
+			export ${servicesNames[$i]}=false
+			
+
 			echo "${servicesNames[$i]} removed"
 			rm -f /etc/nginx/template/locations/${servicesNames[$i]}.conf 
 			rm -f /etc/nginx/template/subcode/${servicesNames[$i]}.conf.template 
