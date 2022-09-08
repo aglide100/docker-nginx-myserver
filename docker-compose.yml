@@ -39,6 +39,7 @@ services:
             - Minecraft=false
             - Dynmap=false
             - Bluemap=false
+            - API=false
 
 networks:
     docker_network:
