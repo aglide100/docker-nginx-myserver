@@ -12,34 +12,34 @@ services:
         ports:
             - "80:80"
             - "443:443"
-        #volumes:
-        #    - /etc/letsencrypt:/etc/letsencrypt
-        #    - /home/data/www/certbot:/var/www/certbot
+        volumes:
+            - /etc/letsencrypt:/etc/letsencrypt
+            - /home/data/www/certbot:/var/www/certbot
         # env_file:
         #     - /media/test/config/proxyList.env
         environment:
             # Create htpasswd user
-            - USERNAME=Hello
-            - USERPWD=Hello
-            - USERNAME2=Hello
-            - USERPWD2=Hello
-            - Domain2=example.com
-            - Domain1=example.com
-            - Jdownloader2=false
-            - Netdata=false
-            - Photoprism=false
-            - Transmission=false
-            - Codeserver=false
-            - Jellyfin=false
-            - Jellyfin2=false
-            - Jenkins=false
-            - Nextcloud=false
-            - Tomcat=false
-            - CasaOS=false
-            - Minecraft=false
-            - Dynmap=false
-            - Bluemap=false
-            - API=false
+            #- USERNAME=Hello
+            #- USERPWD=Hello
+            #- USERNAME2=Hello
+            #- USERPWD2=Hello
+            #- Domain2=example.com
+            #- Domain1=${Domain1}
+            #- Jdownloader2=false
+            #- Netdata=false
+            #- Photoprism=false
+            #- Transmission=false
+            #- Codeserver=false
+            #- Jellyfin=false
+            #- Jellyfin2=false
+            #- Jenkins=false
+            #- Nextcloud=false
+            #- Tomcat=false
+            #- CasaOS=false
+            #- Minecraft=false
+            #- Dynmap=false
+            #- Bluemap=false
+            #- API=true
 
 networks:
     docker_network:

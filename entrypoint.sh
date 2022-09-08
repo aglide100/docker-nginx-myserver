@@ -17,6 +17,7 @@ servicesNames=(
 	"CasaOS"
 	"Minecraft"
 	"Dynmap"
+	"Bluemap"
 	"API"
 )
 
@@ -129,9 +130,9 @@ function checkService() {
 				rm -f /etc/nginx/template/upstreams/${servicesNames[$i]}.conf 
 			fi
 		else 
-			if [[${Check} == "" ]]; then
-				${Check} == false
-			fi
+			
+			export ${servicesNames[$i]}=false
+			
 
 			echo "${servicesNames[$i]} removed"
 			rm -f /etc/nginx/template/locations/${servicesNames[$i]}.conf 
