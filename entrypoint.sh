@@ -32,10 +32,23 @@ function makeEnvFile() {
 	envsubst < /etc/nginx/template/env/env.template > /usr/share/nginx/html/env.html
 }
 
-function giveEnvAtCommonFile() {
-	envsubst '${Domain2} ${Domain1}' < /etc/nginx/template/base.conf.template > /etc/nginx/sites-available/base.conf
-	#envsubst '${Domain2} ${Domain1}' < /etc/nginx/template/index.html.template > /usr/share/nginx/html/index.html
+function makeBaseConf() {
+	Check=${SSL:-false}
+
+	if [[ ${Check} == "true" ]]; then
+	    echo "SSL is true"
+		envsubst '${Domain2} ${Domain1}' < /etc/nginx/template/ssl.conf.template > /etc/nginx/sites-available/ssl.conf
+	else
+	    echo "SSL is false"
+		envsubst '${Domain2} ${Domain1}' < /etc/nginx/template/base.conf.template > /etc/nginx/sites-available/base.conf
+	fi
+
 }
+
+#function giveEnvAtCommonFile() {
+#	envsubst '${Domain2} ${Domain1}' < /etc/nginx/template/base.conf.template > /etc/nginx/sites-available/base.conf
+#	#envsubst '${Domain2} ${Domain1}' < /etc/nginx/template/index.html.template > /usr/share/nginx/html/index.html
+#}
 
 function combinedBaseConf() {
 	if [[ -v DOMAIN2 && -n ${DOMAIN2} ]]; then
@@ -151,7 +164,7 @@ addConfFile() {
 
 checkService
 genSubCodeServerConf
-giveEnvAtCommonFile
+makeBaseConf
 makeEnvFile
 makeLinkedFile
 makeLinkedFileAtLocations

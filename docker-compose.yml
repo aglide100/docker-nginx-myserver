@@ -19,6 +19,7 @@ services:
         #     - /media/test/config/proxyList.env
         environment:
             # Create htpasswd user
+            #- SSL=false
             #- USERNAME=Hello
             #- USERPWD=Hello
             #- USERNAME2=Hello
