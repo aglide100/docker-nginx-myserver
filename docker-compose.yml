@@ -32,7 +32,6 @@ services:
             #- Transmission=false
             #- Codeserver=false
             #- Jellyfin=false
-            #- Jellyfin2=false
             #- Jenkins=false
             #- Nextcloud=false
             #- Tomcat=false
@@ -40,7 +39,6 @@ services:
             #- Minecraft=false
             #- Dynmap=false
             #- Bluemap=false
-            #- API=true
 
 networks:
     docker_network:

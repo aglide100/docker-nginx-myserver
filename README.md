@@ -1,14 +1,15 @@
 # docker-nginx-myserver
 Just for my nas...
 
-본 레포는 간단한 도커라이즈된 nginx와 static react 애플리케이션입니다.
+본 레포는 간단하게 nginx로 reverse proxy하기 위해 만든 프로젝트입니다!
 
-기본적으로 env를 통해 reversed proxy와 index.html를 제공해주는 것을 기본적인 목표로합니다.
+static react를 이용하되 env를 통해 간단하게 nginx를 구성합니다
+
 
 ------
-This repo is simple dockerized nginx application...
+This repo is simple reverse proxy server for other application!
 
-Basically provide reversed proxy & static index.html depends env file.
+Basically used nginx & static react page depends env file.
 
 
 
@@ -21,8 +22,7 @@ Basically provide reversed proxy & static index.html depends env file.
 services:
     nginx:
         container_name: nginx
-        build:
-            context: .
+        image: ghcr.io/aglide100/docker-nginx-myserver:latest
         restart: always
         hostname: nginx
         networks:
@@ -43,19 +43,21 @@ services:
             - USERPWD2=Hello
             - Domain2=example.com
             - Domain1=example.com
-            - Jdownloader2=false
-            - Netdata=false
-            - Photoprism=false
-            - Transmission=false
-            - Codeserver=false
-            - Jellyfin=false
-            - Jellyfin2=false
-            - Jenkins=false
-            - Nextcloud=false
-            - Tomcat=false
-            - CasaOS=false
-            - Minecraft=false
-            - Dynmap=false
+            - SSL=false
+            #- Jdownloader2=true
+            #- Netdata=true
+            #- Photoprism=true
+            #- Transmission=true
+            #- Codeserver=true
+            #- Jellyfin=true
+            #- Jellyfin2=true
+            #- Jenkins=true
+            #- Nextcloud=true
+            #- Tomcat=true
+            #- CasaOS=true
+            #- Minecraft=true
+            #- Dynmap=true
+            #- Bluemap=true
     # other services...       
       
 
@@ -71,4 +73,5 @@ networks:
     - USERPWD: User pwd when use http basic login
     - Domain1: domain
     - Domain2: same function at Domain1
+    - SSL: using tls certification file
     - {servicenames} : proxypass to declared in services..

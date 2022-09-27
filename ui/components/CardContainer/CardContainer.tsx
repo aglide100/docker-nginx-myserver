@@ -15,6 +15,7 @@ export type CardContainerDataType = typeof servicesList[number];
 export type CardContainerProps = {
     svcName: CardContainerDataType;
     domain: string;
+    // onHover: (e:any) => void;
 };
 
 export const servicesList = [
@@ -24,7 +25,6 @@ export const servicesList = [
     "Transmission",
     "Codeserver",
     "Jellyfin",
-    "Jellyfin2",
     "Jenkins",
     "Nextcloud",
     "Tomcat",
@@ -40,7 +40,6 @@ const cardData = {
     Transmission: React.createFactory(Transmission),
     Codeserver: React.createFactory(CodeServer),
     Jellyfin: React.createFactory(Jellyfin),
-    Jellyfin2: React.createFactory(None),
     Jenkins: React.createFactory(None),
     Nextcloud: React.createFactory(Nextcloud),
     Tomcat: React.createFactory(None),

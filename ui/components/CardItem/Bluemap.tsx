@@ -70,7 +70,7 @@ export const Bluemap = (domain: String) => {
                     }}
                 >
                     <motion.img
-                        src="/icon_Bluemap.png"
+                        src="/icon_bluemap.png"
                         style={{ width: "30px", height: "30px" }}
                     ></motion.img>
                     <motion.h2 style={{ marginLeft: "0.5rem" }}>
@@ -82,9 +82,10 @@ export const Bluemap = (domain: String) => {
                         variants={contentVariants}
                         initial="show"
                         exit="hidden"
+                        transition={{ duration: 0.7 }}
                         style={{ marginLeft: "1.5rem" }}
                     >
-                        Some describe about this service
+                        3D map for Minecraft Server
                     </motion.div>
                 )}
             </motion.div>

@@ -70,6 +70,7 @@ export const Netdata = (domain: String) => {
                         initial="show"
                         exit="hidden"
                         style={{marginLeft: "1.5rem"}}
+                        transition={{ duration: 0.7 }}
                         >
                         Some describe about this service
                     </motion.div>

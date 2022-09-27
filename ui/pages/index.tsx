@@ -12,7 +12,7 @@ const Home: NextPage = () => {
     const [data, setData] = useState<any>();
     const [domain, setDomain] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
-
+    const [isHover, setIsHover] = useState<boolean>(false);
     function getEnv() {
         const axiosObj = axios.default;
         axiosObj.get("/env").then((res) => {
@@ -22,6 +22,11 @@ const Home: NextPage = () => {
             setIsLoading(true);
         });
     }
+
+    // function onHover(e: any) {
+    //     e.preventDefault();
+    //     setIsHover(!isHover);
+    // }
 
     useEffect(() => {
         if (!isLoading) {
