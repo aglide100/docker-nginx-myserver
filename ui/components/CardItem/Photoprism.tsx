@@ -61,7 +61,7 @@ export const Photoprism = (domain: String) => {
                         location.href="/photoprism";
                     }}
                     style={{display: "flex", flexDirection: "row", marginLeft: "0.7rem", cursor: "pointer", alignItems: "center", justifyContent: "start"}}>
-                    <motion.img src="/icon_gallery.svg" style={{ width: "30px", height: "30px"}}></motion.img>         
+                    <motion.img src="/icon_photoprism.svg" style={{ width: "30px", height: "30px"}}></motion.img>         
                     <motion.h2 style={{marginLeft: "0.5rem"}}>Photoprism</motion.h2> 
                 </motion.div>
                 {isHover && 
