@@ -43,7 +43,7 @@ const Home: NextPage = () => {
     cardList = Object.keys(data).map((key, i) => {
       let serviceName = key as CardContainerDataType;
 
-      if (data[key] == false) {
+      if (data[key] == true) {
         return (
           <CardContainer
             key={"list_" + i}
@@ -68,12 +68,14 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>Hello</h1>
-        <Switch
-          onChange={(e) => {
-            setIsClick(!isClick);
-          }}
-          checked={isClick}
-        />
+        <div style={{ marginTop: "3px" }}>
+          <Switch
+            onChange={(e) => {
+              setIsClick(!isClick);
+            }}
+            checked={isClick}
+          />
+        </div>
 
         {/* <p className={styles.description}>
                     <code className={styles.code}>pages/index.tsx</code>
