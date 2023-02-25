@@ -1,94 +1,19 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React from "react";
+import { CardItemTemplate } from "../CardItemTemplate/CardItemTemplate";
+import { CardContainerProps } from "../CardContainer/CardContainer";
 
-const contentVariants = {
-    show: {
-        opacity: 1,
-        transition: {
-            delay: 0.7,
-            duration: 0.7,
-        },
-    },
-    hidden: {
-        maxWidth: "750px",
-        maxHeight: "900px",
-        opacity: 0,
-        transition: {
-            duration: 0.7,
-        },
-    },
-};
+export const Bluemap = (props: CardContainerProps) => {
+  const innerContent = <>3D map for Minecraft Server</>;
 
-export const Bluemap = (domain: String) => {
-    const [isHover, setIsHover] = useState<boolean>(false);
-
-    return (
-        <AnimatePresence>
-            <motion.div
-                layout
-                drag
-                dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-                initial={true}
-                onMouseEnter={(ev) => {
-                    ev.preventDefault();
-                    setIsHover(true);
-                }}
-                onMouseLeave={(ev) => {
-                    ev.preventDefault();
-                    setIsHover(false);
-                }}
-                whileHover={{
-                    width: "20rem",
-                    height: "10rem",
-                    borderColor: "#0070f3",
-                    color: "#0070f3",
-                }}
-                transition={{ duration: 0.7 }}
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: "15rem",
-                    height: "6rem",
-                    color: "inherit",
-                    border: "1px solid #eaeaea",
-                    borderRadius: "10px",
-                    margin: "1.5rem",
-                }}
-            >
-                <motion.div
-                    onClick={(ev) => {
-                        ev.preventDefault();
-                        location.href = "/bluemap";
-                    }}
-                    style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        marginLeft: "0.7rem",
-                        cursor: "pointer",
-                        alignItems: "center",
-                        justifyContent: "start",
-                    }}
-                >
-                    <motion.img
-                        src="/icon_bluemap.png"
-                        style={{ width: "30px", height: "30px" }}
-                    ></motion.img>
-                    <motion.h2 style={{ marginLeft: "0.5rem" }}>
-                        Bluemap
-                    </motion.h2>
-                </motion.div>
-                {isHover && (
-                    <motion.div
-                        variants={contentVariants}
-                        initial="show"
-                        exit="hidden"
-                        transition={{ duration: 0.7 }}
-                        style={{ marginLeft: "1.5rem" }}
-                    >
-                        3D map for Minecraft Server
-                    </motion.div>
-                )}
-            </motion.div>
-        </AnimatePresence>
-    );
+  return (
+    <>
+      <CardItemTemplate
+        isClick={props.isClick}
+        displayedName={"Bluemap"}
+        svcUrl={"/bluemap"}
+        logoUrl={"icon_bluemap.png"}
+        child={innerContent}
+      ></CardItemTemplate>
+    </>
+  );
 };

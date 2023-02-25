@@ -1,92 +1,25 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React from "react";
+import { CardContainerProps } from "../CardContainer/CardContainer";
+import { CardItemTemplate } from "../CardItemTemplate/CardItemTemplate";
 
-const contentVariants = {
-    show: {
-      opacity: 1,
-      transition: {
-        delay: 0.7,
-        duration: 0.7
-      }
-    },
-    hidden: {
-      maxWidth: "750px",
-      maxHeight: "900px",
-      opacity: 0,
-      transition: {
-        duration: 0.7
-      }
+export const Jellyfin = (props: CardContainerProps) => {
+  const innerContent = <>media player</>;
+  let baseUrl = "";
+
+  for (var p in props.domain) {
+    if (Object.prototype.hasOwnProperty.call(props.domain, p)) {
+      baseUrl += props.domain[p];
     }
+  }
+  return (
+    <>
+      <CardItemTemplate
+        isClick={props.isClick}
+        displayedName={"Jellyfin"}
+        svcUrl={"jellyfin." + baseUrl}
+        logoUrl={"icon_jellyfin.png"}
+        child={innerContent}
+      ></CardItemTemplate>
+    </>
+  );
 };
-
-export const Jellyfin = (domain: String) => {
-    const [isHover, setIsHover] = useState<boolean>(false);
-    
-    let url = '';
-
-    for (var p in domain) {
-        if (Object.prototype.hasOwnProperty.call(domain, p)) {
-            url += domain[p];
-        }
-    }
-    return (
-        <AnimatePresence>
-            <motion.div
-                layout
-                drag
-                dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-                initial={true}
-                onMouseEnter={(ev) => {
-                    ev.preventDefault();
-                    setIsHover(true);
-                }}
-                onMouseLeave={(ev) => {
-                    ev.preventDefault();
-                    setIsHover(false);
-                }}
-                whileHover={{
-                    width: "20rem",
-                    height: "10rem",
-                    borderColor: "#0070f3",
-                    color: "#0070f3",
-                }}
-                transition={{ duration: 0.7 }}
-                style={{
-                    display:"flex",
-                    flexDirection:"column", 
-                    width: "15rem", 
-                    height: "6rem",
-                    color: "inherit",
-                    border: "1px solid #eaeaea",
-                    borderRadius: "10px",
-                    margin: "1.5rem",
-                }}
-            >   
-                <motion.div 
-                    onClick={(ev) => {
-                        ev.preventDefault();
-                        if (location.protocol == 'http:') {
-                            location.href="http://jellyfin."+url;    
-                        } else {
-                            location.href="https://jellyfin."+url;        
-                        }
-                    }}
-                    style={{display: "flex", flexDirection: "row", marginLeft: "0.7rem", cursor: "pointer", alignItems: "center", justifyContent: "start"}}>
-                    <motion.img src="/icon_jellyfin.png" style={{ width: "30px", height: "30px"}}></motion.img>         
-                    <motion.h2 style={{marginLeft: "0.5rem"}}>Jellyfin</motion.h2> 
-                </motion.div>
-                {isHover && 
-                    <motion.div
-                        variants={contentVariants}
-                        initial="show"
-                        exit="hidden"
-                        style={{marginLeft: "1.5rem"}}
-                        transition={{ duration: 0.7 }}
-                        >
-                        Some describe about this service
-                    </motion.div>
-                }
-            </motion.div>
-        </AnimatePresence>
-    )
-}

@@ -1,5 +1,5 @@
-export const None = (domain: String) => {  
-    return (
-        <></>
-    )
-}
+import { CardContainerProps } from "../CardContainer/CardContainer";
+
+export const None = (props: CardContainerProps) => {
+  return <></>;
+};

@@ -14,6 +14,9 @@ RUN npm run export
 
 FROM nginx:1.21-alpine AS runtime
 
+ENV LANG=ko_KR.UTF-8 \
+    LANGUAGE=ko_KR.UTF-8
+
 COPY --from=builder /app/out/ /usr/share/nginx/html
 
 RUN apk add --update apache2-utils \
@@ -22,11 +25,11 @@ RUN apk add --update apache2-utils \
 RUN apk add --no-cache --upgrade bash
 
 RUN mkdir -p /etc/nginx/sites-available/locations && \
-mkdir -p /etc/nginx/sites-enabled/locations && \
-mkdir -p /var/webdav/file/share && \
-mkdir -p /var/webdav/client_temp && \
-mkdir -p /etc/nginx/conf.d && \
-rm -rf /etc/nginx/sites-enabled/default
+    mkdir -p /etc/nginx/sites-enabled/locations && \
+    mkdir -p /var/webdav/file/share && \
+    mkdir -p /var/webdav/client_temp && \
+    mkdir -p /etc/nginx/conf.d && \
+    rm -rf /etc/nginx/sites-enabled/default
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
