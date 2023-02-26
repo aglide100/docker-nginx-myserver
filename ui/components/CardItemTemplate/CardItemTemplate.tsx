@@ -91,7 +91,7 @@ export const CardItemTemplate = (props: CardItemTemplateProps) => {
             }}
             whileHover={{
               display: "fixed",
-              width: "15rem",
+              width: "22rem",
               height: "10rem",
               borderColor: "#0070f3",
               backgroundColor: "#000000",

@@ -68,7 +68,7 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>Hello</h1>
-        <div style={{ marginTop: "3px" }}>
+        <div style={{ marginTop: "5px" }}>
           <Switch
             onChange={(e) => {
               setIsClick(!isClick);
