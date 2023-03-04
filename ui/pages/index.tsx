@@ -50,7 +50,7 @@ const Home: NextPage = () => {
         windowTest = window.location.href;
 
         let script = document.createElement("script");
-        script.src = "/live2d-widget/autoload.js";
+        script.src = "/live2d-widget-fork/autoload.js";
 
         script.async = true;
         if (isClick && isLoading) {
