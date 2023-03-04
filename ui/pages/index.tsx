@@ -7,12 +7,10 @@ import styles from "../styles/Home.module.css";
 import * as axios from "axios";
 import {
     CardContainer,
-    CardContainerProps,
     CardContainerDataType,
 } from "../components/CardContainer/CardContainer";
 import { motion, AnimateSharedLayout } from "framer-motion";
 import Switch from "react-switch";
-import Script from "next/script";
 
 const Home: NextPage = () => {
     let cardList;
@@ -20,7 +18,7 @@ const Home: NextPage = () => {
     const [domain, setDomain] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [isClick, setIsClick] = useState<boolean>(false);
-    //   const [isHover, setIsHover] = useState<boolean>(false);
+
     function getEnv() {
         const axiosObj = axios.default;
         axiosObj.get("/env/").then((res) => {
@@ -31,36 +29,31 @@ const Home: NextPage = () => {
         });
     }
 
-    // function onHover(e: any) {
-    //     e.preventDefault();
-    //     setIsHover(!isHover);
-    // }
-
     useEffect(() => {
         if (!isLoading) {
             getEnv();
         }
     });
 
-    let location;
-    let windowTest;
+    // let location;
+    // let windowTest;
 
-    if (process.browser) {
-        location = document.location;
-        windowTest = window.location.href;
+    // if (process.browser) {
+    //     location = document.location;
+    //     windowTest = window.location.href;
 
-        let script = document.createElement("script");
-        script.src = "/live2d-widget-fork/autoload.js";
+    //     let script = document.createElement("script");
+    //     script.src = "/live2d-widget-fork/autoload.js";
 
-        script.async = true;
-        if (isClick && isLoading) {
-            document.body.appendChild(script);
-        } else {
-            if (document.body.hasAttribute("script")) {
-                document.body.removeChild(script);
-            }
-        }
-    }
+    //     script.async = true;
+    //     if (isClick && isLoading) {
+    //         document.body.appendChild(script);
+    //     } else {
+    //         if (document.body.hasAttribute("script")) {
+    //             document.body.removeChild(script);
+    //         }
+    //     }
+    // }
 
     if (isLoading && data != undefined) {
         cardList = Object.keys(data).map((key, i) => {

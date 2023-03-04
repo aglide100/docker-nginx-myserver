@@ -4,6 +4,8 @@ RUN mkdir /app
 
 COPY ui/ /app
 
+COPY widget/ /widget
+
 WORKDIR /app
 
 RUN npm install
@@ -18,6 +20,9 @@ ENV LANG=ko_KR.UTF-8 \
     LANGUAGE=ko_KR.UTF-8
 
 COPY --from=builder /app/out/ /usr/share/nginx/html
+
+COPY --from=builder /widget/live2d-widget-hardfork /usr/share/nginx/html/live2d-widget-hardfork
+
 
 RUN apk add --update apache2-utils \
     && rm -rf /var/cache/apk/*

@@ -1,8 +1,3 @@
-// let "live2d-widget-fork/" =
-//     "https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget-fork@latest/";
-//const "live2d-widget-fork/" = "/live2d-widget-fork/";
-// let "live2d-widget-fork/" = "live2d-widget-fork/";
-// 封装异步加载资源的方法
 function loadExternalResource(url, type) {
     return new Promise((resolve, reject) => {
         let tag;
@@ -24,15 +19,17 @@ function loadExternalResource(url, type) {
 }
 
 // 加载 waifu.css live2d.min.js waifu-tips.js
-if (screen.width >= 768) {
+// if (screen.width >= 768) {
+
+if (screen.width >= 200) {
     Promise.all([
-        loadExternalResource("live2d-widget-fork/" + "waifu.css", "css"),
-        loadExternalResource("live2d-widget-fork/" + "live2d.min.js", "js"),
-        loadExternalResource("live2d-widget-fork/" + "waifu-tips.js", "js"),
+        loadExternalResource("live2d-widget-hardfork/" + "waifu.css", "css"),
+        loadExternalResource("live2d-widget-hardfork/" + "live2d.min.js", "js"),
+        loadExternalResource("live2d-widget-hardfork/" + "waifu-tips.js", "js"),
     ]).then(() => {
         // 配置选项的具体用法见 README.md
         initWidget({
-            waifuPath: "live2d-widget-fork/" + "waifu-tips.json",
+            waifuPath: "live2d-widget-hardfork/" + "waifu-tips.json",
             //apiPath: "https://live2d.fghrsh.net/api/",
             cdnPath: "https://fastly.jsdelivr.net/gh/fghrsh/live2d_api/",
             tools: [
