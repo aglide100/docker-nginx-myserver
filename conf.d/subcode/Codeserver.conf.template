@@ -1,5 +1,6 @@
 
 server {
+    #include /etc/nginx/sites-enabled/common/*.conf;
     server_name code.${Domain2} code.${Domain1};
     charset utf-8;
     

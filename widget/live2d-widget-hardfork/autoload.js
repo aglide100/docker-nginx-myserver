@@ -23,15 +23,22 @@ function loadExternalResource(url, type) {
 
 if (screen.width >= 200) {
     Promise.all([
-        loadExternalResource("live2d-widget-hardfork/" + "waifu.css", "css"),
-        loadExternalResource("live2d-widget-hardfork/" + "live2d.min.js", "js"),
-        loadExternalResource("live2d-widget-hardfork/" + "waifu-tips.js", "js"),
+        loadExternalResource("/live2d-widget-hardfork/" + "waifu.css", "css"),
+        loadExternalResource(
+            "/live2d-widget-hardfork/" + "live2d.min.js",
+            "js"
+        ),
+        loadExternalResource(
+            "/live2d-widget-hardfork/" + "waifu-tips.js",
+            "js"
+        ),
     ]).then(() => {
         // 配置选项的具体用法见 README.md
         initWidget({
-            waifuPath: "live2d-widget-hardfork/" + "waifu-tips.json",
+            waifuPath: "/live2d-widget-hardfork/" + "waifu-tips.json",
             //apiPath: "https://live2d.fghrsh.net/api/",
-            cdnPath: "https://fastly.jsdelivr.net/gh/fghrsh/live2d_api/",
+            // cdnPath: "https://fastly.jsdelivr.net/gh/fghrsh/live2d_api/",
+            cdnPath: "/live2d_api",
             tools: [
                 "hitokoto",
                 "asteroids",

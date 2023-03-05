@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-script-component-in-head */
-/* eslint-disable @next/next/no-sync-scripts */
 import React, { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
@@ -16,7 +14,7 @@ const Home: NextPage = () => {
     let cardList;
     const [data, setData] = useState<any>();
     const [domain, setDomain] = useState<string>("");
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isClick, setIsClick] = useState<boolean>(false);
 
     function getEnv() {
@@ -34,26 +32,6 @@ const Home: NextPage = () => {
             getEnv();
         }
     });
-
-    // let location;
-    // let windowTest;
-
-    // if (process.browser) {
-    //     location = document.location;
-    //     windowTest = window.location.href;
-
-    //     let script = document.createElement("script");
-    //     script.src = "/live2d-widget-fork/autoload.js";
-
-    //     script.async = true;
-    //     if (isClick && isLoading) {
-    //         document.body.appendChild(script);
-    //     } else {
-    //         if (document.body.hasAttribute("script")) {
-    //             document.body.removeChild(script);
-    //         }
-    //     }
-    // }
 
     if (isLoading && data != undefined) {
         cardList = Object.keys(data).map((key, i) => {

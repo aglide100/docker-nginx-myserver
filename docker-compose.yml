@@ -24,12 +24,12 @@ services:
             - USERPWD=Hello
             - USERNAME2=Hello
             - USERPWD2=Hello
-            - Domain2=example.com
+            - Domain2=localhost
             #- Domain1=${Domain1}
             # - Jdownloader2=true
             - Netdata=false
             #- Photoprism=false
-            #- Transmission=false
+            - Transmission=true
             #- Codeserver=false
             #- Jellyfin=false
             #- Jenkins=false
@@ -39,6 +39,23 @@ services:
             #- Minecraft=false
             #- Dynmap=false
             #- Bluemap=false
+    transmission:
+        container_name: transmission
+        image: linuxserver/transmission
+        restart: unless-stopped
+        # volumes:
+        #- /etc/localtime:/etc/localtime:ro
+        # - /media/pi/OS1/container-config/transmission/config:/config
+        # - /media/pi/OS1/file/transmission/download:/downloads
+        # - /media/pi/OS1/file/transmission/watch:/watch
+        hostname: transmission
+        networks:
+            - docker_network
+        expose:
+            - 9091
+            - 51413
+            - 51413/udp
+        privileged: true
 
 networks:
     docker_network:

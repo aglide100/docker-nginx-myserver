@@ -11,9 +11,9 @@ import showMessage from "./message.js";
 function showHitokoto() {
     // 增加 hitokoto.cn 的 API
     fetch("https://v1.hitokoto.cn")
-        .then(response => response.json())
-        .then(result => {
-            const text = `这句一言来自 <span>「${result.from}」</span>，是 <span>${result.creator}</span> 在 hitokoto.cn 投稿的。`;
+        .then((response) => response.json())
+        .then((result) => {
+            const text = `그 말의 유래는 <span>「${result.from}」</span>，<span>${result.creator}</span> hitokoto.cn 에 게시하였습니다.`;
             showMessage(result.hitokoto, 6000, 9);
             setTimeout(() => {
                 showMessage(text, 4000, 9);
@@ -22,11 +22,11 @@ function showHitokoto() {
 }
 
 const tools = {
-    "hitokoto": {
+    hitokoto: {
         icon: fa_comment,
-        callback: showHitokoto
+        callback: showHitokoto,
     },
-    "asteroids": {
+    asteroids: {
         icon: fa_paper_plane,
         callback: () => {
             if (window.Asteroids) {
@@ -34,45 +34,52 @@ const tools = {
                 window.ASTEROIDSPLAYERS.push(new Asteroids());
             } else {
                 const script = document.createElement("script");
-                script.src = "https://fastly.jsdelivr.net/gh/stevenjoezhang/asteroids/asteroids.js";
+                script.src =
+                    "https://fastly.jsdelivr.net/gh/stevenjoezhang/asteroids/asteroids.js";
                 document.head.appendChild(script);
             }
-        }
+        },
     },
     "switch-model": {
         icon: fa_user_circle,
-        callback: () => {}
+        callback: () => {},
     },
     "switch-texture": {
         icon: fa_street_view,
-        callback: () => {}
+        callback: () => {},
     },
-    "photo": {
+    photo: {
         icon: fa_camera_retro,
         callback: () => {
-            showMessage("照好了嘛，是不是很可爱呢？", 6000, 9);
+            showMessage("다 찍었네요. 귀엽지 않아요?", 6000, 9);
             Live2D.captureName = "photo.png";
             Live2D.captureFrame = true;
-        }
+        },
     },
-    "info": {
+    info: {
         icon: fa_info_circle,
         callback: () => {
             open("https://github.com/stevenjoezhang/live2d-widget");
-        }
+        },
     },
-    "quit": {
+    quit: {
         icon: fa_xmark,
         callback: () => {
             localStorage.setItem("waifu-display", Date.now());
-            showMessage("愿你有一天能与重要的人重逢。", 2000, 11);
+            showMessage(
+                "언젠가는 소중한 사람과 재회했으면 좋겠습니다.",
+                2000,
+                11
+            );
             document.getElementById("waifu").style.bottom = "-500px";
             setTimeout(() => {
                 document.getElementById("waifu").style.display = "none";
-                document.getElementById("waifu-toggle").classList.add("waifu-toggle-active");
+                document
+                    .getElementById("waifu-toggle")
+                    .classList.add("waifu-toggle-active");
             }, 3000);
-        }
-    }
+        },
+    },
 };
 
 export default tools;

@@ -32,8 +32,13 @@ class Model {
             const target = randomSelection(this.modelList.models[modelId]);
             loadlive2d("live2d", `${this.cdnPath}model/${target}/index.json`);
         } else {
-            loadlive2d("live2d", `${this.apiPath}get/?id=${modelId}-${modelTexturesId}`);
-            console.log(`Live2D 模型 ${modelId}-${modelTexturesId} 加载完成`);
+            loadlive2d(
+                "live2d",
+                `${this.apiPath}get/?id=${modelId}-${modelTexturesId}`
+            );
+            console.log(
+                `Live2D 모형이야 ${modelId}-${modelTexturesId} 로딩 완료`
+            );
         }
     }
 
@@ -44,14 +49,25 @@ class Model {
             if (!this.modelList) await this.loadModelList();
             const target = randomSelection(this.modelList.models[modelId]);
             loadlive2d("live2d", `${this.cdnPath}model/${target}/index.json`);
-            showMessage("我的新衣服好看嘛？", 4000, 10);
+            showMessage("내 새 옷 어때?", 4000, 10);
         } else {
             // 可选 "rand"(随机), "switch"(顺序)
-            fetch(`${this.apiPath}rand_textures/?id=${modelId}-${modelTexturesId}`)
-                .then(response => response.json())
-                .then(result => {
-                    if (result.textures.id === 1 && (modelTexturesId === 1 || modelTexturesId === 0)) showMessage("我还没有其他衣服呢！", 4000, 10);
-                    else this.loadModel(modelId, result.textures.id, "我的新衣服好看嘛？");
+            fetch(
+                `${this.apiPath}rand_textures/?id=${modelId}-${modelTexturesId}`
+            )
+                .then((response) => response.json())
+                .then((result) => {
+                    if (
+                        result.textures.id === 1 &&
+                        (modelTexturesId === 1 || modelTexturesId === 0)
+                    )
+                        showMessage("다른 옷은 없어!", 4000, 10);
+                    else
+                        this.loadModel(
+                            modelId,
+                            result.textures.id,
+                            "내 새 옷 어때?"
+                        );
                 });
         }
     }
@@ -60,12 +76,13 @@ class Model {
         let modelId = localStorage.getItem("modelId");
         if (this.useCDN) {
             if (!this.modelList) await this.loadModelList();
-            const index = (++modelId >= this.modelList.models.length) ? 0 : modelId;
+            const index =
+                ++modelId >= this.modelList.models.length ? 0 : modelId;
             this.loadModel(index, 0, this.modelList.messages[index]);
         } else {
             fetch(`${this.apiPath}switch/?id=${modelId}`)
-                .then(response => response.json())
-                .then(result => {
+                .then((response) => response.json())
+                .then((result) => {
                     this.loadModel(result.model.id, 0, result.model.message);
                 });
         }

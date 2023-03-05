@@ -1,4 +1,5 @@
 server {
+    include /etc/nginx/sites-enabled/common/*.conf;
     server_name jenkins.${Domain1} jenkins.${Domain2};
     charset utf-8;
     

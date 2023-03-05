@@ -50,7 +50,7 @@ server {
         #limit_req_log_level     error; 
 
         sub_filter </head>
-            '</head><script language="javascript" src="/live2d-widget-hardfork /autoload.js"></script>';
+            '</head><script language="javascript" src="/live2d-widget-hardfork/autoload.js"></script>';
         sub_filter_once on;
     }
 

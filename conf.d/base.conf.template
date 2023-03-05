@@ -17,14 +17,13 @@ server {
         dav_access all:r;
     }
 
+
     location / {
+        include /etc/nginx/sites-enabled/common/*.conf;
+    
         index index.html;
 	    #limit_req_status        429; 
         #limit_req_log_level     error; 
-
-        sub_filter </head>
-            '</head><script language="javascript" src="/live2d-widget-hardfork/autoload.js"></script>';
-        sub_filter_once on;
     }
 
     location /env {

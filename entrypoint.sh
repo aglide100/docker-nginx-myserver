@@ -79,6 +79,8 @@ function genSubCodeServerConf() {
 
 function makeLinkedFileAtLocations() {
 	path="/etc/nginx/template/locations"
+	
+	ln -sf "/etc/nginx/template/common/common.conf" /etc/nginx/sites-enabled/common/common.conf
 
 	for entry in "${path}"/*
 	do
@@ -90,9 +92,6 @@ function makeLinkedFileAtLocations() {
 		else 
 			echo "refused : ${fileName} ${fileName##*.}"
 		fi
-
-		# if [[ ${${fileName}##*.} == ".conf" ]]; then
-		# fi
 
 	done
 }
@@ -145,7 +144,7 @@ function checkService() {
 			export ${servicesNames[$i]}=false
 			
 
-			echo "${servicesNames[$i]} removed"
+			#echo "${servicesNames[$i]} removed"
 			rm -f /etc/nginx/template/locations/${servicesNames[$i]}.conf 
 			rm -f /etc/nginx/template/subcode/${servicesNames[$i]}.conf.template 
 			rm -f /etc/nginx/template/upstreams/${servicesNames[$i]}.conf 

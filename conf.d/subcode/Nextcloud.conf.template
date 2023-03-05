@@ -1,5 +1,6 @@
 
 server {
+    #include /etc/nginx/sites-enabled/common/*.conf;
     server_name nextcloud.${Domain2} nextcloud.${Domain1};
     charset utf-8;
     
