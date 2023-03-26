@@ -17,6 +17,7 @@ servicesNames=(
 	"Minecraft"
 	"Dynmap"
 	"Bluemap"
+	"NextJS"
 )
 
 function in_array() {
@@ -125,7 +126,7 @@ function checkService() {
 			echo "${servicesNames[$i]} used"
 			#  pass
 
-			if [ "${servicesNames[$i]}" == 'CasaOS' ] || [ "${servicesNames[$i]}" == 'Dynmap' ] || [ "${servicesNames[$i]}" == 'Bluemap' ] ; then
+			if [ "${servicesNames[$i]}" == 'CasaOS' ] || [ "${servicesNames[$i]}" == 'Dynmap' ] || [ "${servicesNames[$i]}" == 'Bluemap' || [ "${servicesNames[$i]}" == 'NextJS' ] ; then
 				echo "${servicesNames[$i]} Passed"
 				continue
 			fi
