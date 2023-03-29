@@ -16,7 +16,7 @@ export const EmulatorJS = (props: CardContainerProps) => {
       <CardItemTemplate
         isClick={props.isClick}
         displayedName={"emulatorjs"}
-        svcUrl={"https:/emulatorjs." + baseUrl}
+        svcUrl={"https://emulatorjs." + baseUrl}
         logoUrl={"icon_emulatorjs.png"}
         child={innerContent}
       ></CardItemTemplate>
