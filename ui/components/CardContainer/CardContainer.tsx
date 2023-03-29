@@ -2,6 +2,7 @@ import React from "react";
 import { Bluemap } from "../CardItem/Bluemap";
 import { CodeServer } from "../CardItem/CodeServer";
 import { Dynmap } from "../CardItem/Dynmap";
+import { EmulatorJS } from "../CardItem/EmulatorJS";
 import { Jdownloader2 } from "../CardItem/Jdownloader2";
 import { Jellyfin } from "../CardItem/Jellyfin";
 import { Netdata } from "../CardItem/Netdata";
@@ -32,6 +33,7 @@ export const servicesList = [
   "CasaOS",
   "Minecraft",
   "Dynmap",
+  "EmulatorJS",
 ] as const;
 
 const cardData = {
@@ -48,6 +50,7 @@ const cardData = {
   Minecraft: React.createFactory(None),
   Dynmap: React.createFactory(Dynmap),
   Bluemap: React.createFactory(Bluemap),
+  EmulatorJS: React.createFactory(EmulatorJS),
 };
 
 export const CardContainer = (props: CardContainerProps) => {

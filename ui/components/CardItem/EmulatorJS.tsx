@@ -2,7 +2,7 @@ import React from "react";
 import { CardContainerProps } from "../CardContainer/CardContainer";
 import { CardItemTemplate } from "../CardItemTemplate/CardItemTemplate";
 
-export const Emulatorjs = (props: CardContainerProps) => {
+export const EmulatorJS = (props: CardContainerProps) => {
   const innerContent = <>emulatorjs</>;
   let baseUrl = "";
 
