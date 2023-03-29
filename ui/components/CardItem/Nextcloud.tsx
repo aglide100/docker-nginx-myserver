@@ -16,7 +16,7 @@ export const Nextcloud = (props: CardContainerProps) => {
       <CardItemTemplate
         isClick={props.isClick}
         displayedName={"Nextcloud"}
-        svcUrl={"nextcloud." + baseUrl}
+        svcUrl={"https://nextcloud." + baseUrl}
         logoUrl={"icon_nextcloud.png"}
         child={innerContent}
       ></CardItemTemplate>

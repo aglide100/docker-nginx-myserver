@@ -16,7 +16,7 @@ export const CodeServer = (props: CardContainerProps) => {
       <CardItemTemplate
         isClick={props.isClick}
         displayedName={"CodeServer"}
-        svcUrl={"code." + baseUrl}
+        svcUrl={"https://code." + baseUrl}
         logoUrl={"icon_vscode.svg"}
         child={innerContent}
       ></CardItemTemplate>

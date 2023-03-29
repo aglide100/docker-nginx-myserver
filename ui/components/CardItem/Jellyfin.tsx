@@ -16,7 +16,7 @@ export const Jellyfin = (props: CardContainerProps) => {
       <CardItemTemplate
         isClick={props.isClick}
         displayedName={"Jellyfin"}
-        svcUrl={"jellyfin." + baseUrl}
+        svcUrl={"https://jellyfin." + baseUrl}
         logoUrl={"icon_jellyfin.png"}
         child={innerContent}
       ></CardItemTemplate>
