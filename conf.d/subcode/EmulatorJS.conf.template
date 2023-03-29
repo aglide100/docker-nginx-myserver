@@ -1,0 +1,26 @@
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+
+    server_name emulatorjs.*;
+
+    client_max_body_size 0;
+
+    location / {
+        #auth_basic "Restricted";
+        #auth_basic_user_file /config/nginx/.htpasswd;
+
+        proxy_pass http://emulatorjs;
+    }
+
+    location /backend {
+        return 301 $scheme://$host/backend/;
+    }
+
+    location ^~ /backend/ {
+        #auth_basic "Restricted";
+        #auth_basic_user_file /config/nginx/.htpasswd;
+
+        proxy_pass http://emulatorjs_backend;
+    }
+}

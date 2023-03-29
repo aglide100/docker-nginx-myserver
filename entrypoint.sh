@@ -18,6 +18,7 @@ servicesNames=(
 	"Dynmap"
 	"Bluemap"
 	"NextJS"
+	"EmulatorJS"
 )
 
 function in_array() {
