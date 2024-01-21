@@ -54,12 +54,6 @@ server {
         alias /usr/share/nginx/html/;
         index env.html;
     }
-    
-    location /share {
-        alias /home/data/share;
-        autoindex on;
-        dav_access all:r;
-    }
 
     include /etc/nginx/sites-enabled/locations/*.conf;
     include /etc/nginx/sites-enabled/upstreams/*.conf;
